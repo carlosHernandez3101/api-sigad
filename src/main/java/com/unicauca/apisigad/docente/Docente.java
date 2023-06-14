@@ -19,9 +19,8 @@ public class Docente {
     private Long id;
     private String nombres;
     private String apellidos;
-    private String tipoIndentificacion;
-    private String idetificacion;
-    private String genero;
+    private String tipoIdentificacion;
+    private String identificacion;
     private String tipoDocente;
     private String correoInstitucional;
     private String ultimoTituloAcademico;
