@@ -9,14 +9,12 @@ CREATE TABLE docentes (
   ultimoTituloAcademico varchar(100) NOT NULL,
   primary key (id)
 );
-
 CREATE TABLE usuarios (
-  id bigint NOT NULL auto_increment,
-  usuario varchar(100) NOT NULL,
-  contraseña varchar(100) NOT NULL,
-  rol varchar(100) NOT NULL,
-  docente_id bigint NOT NULL,
-  primary key (id),
-  foreign key (docente_id) references docentes(id)
-
-);
+    id bigint NOT NULL auto_increment,
+    usuario varchar(100) NOT NULL,
+    contraseña varchar(100) NOT NULL,
+    rol varchar(100) NOT NULL,
+    docente_id bigint NOT NULL,
+    primary key (id),
+    foreign key (docente_id) references docentes(id)
+ );

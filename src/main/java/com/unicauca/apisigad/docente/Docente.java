@@ -8,7 +8,7 @@ import lombok.Getter;
 
 
 @Table(name = "docentes")
-@Entity(name = "Docente")
+@Entity(name = "docente")
 @AllArgsConstructor
 @Getter
 @EqualsAndHashCode(of = "id")
@@ -28,5 +28,17 @@ public class Docente {
     @Embedded
     @OneToOne(mappedBy = "docente", cascade = CascadeType.ALL)
     private Usuario usuario;
+
+    public Docente(DatosRegistroDocente datosRegistroDocente) {
+        this.nombres = datosRegistroDocente.nombres();
+        this.apellidos = datosRegistroDocente.apellidos();
+        this.tipoIdentificacion = datosRegistroDocente.tipoIdentificacion();
+        this.identificacion = datosRegistroDocente.identificacion();
+        this.tipoDocente = datosRegistroDocente.tipoDocente();
+        this.correoInstitucional = datosRegistroDocente.correoInstitucional();
+        this.ultimoTituloAcademico = datosRegistroDocente.ultimoTituloAcademico();
+        this.usuario = new Usuario(datosRegistroDocente.datosRegistroUsuario());
+
+    }
 
 }
