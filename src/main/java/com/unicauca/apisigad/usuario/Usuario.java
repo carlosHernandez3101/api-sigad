@@ -22,7 +22,6 @@ public class Usuario {
     @OneToOne
     @JoinColumn(name = "docente_id")
     private Docente docente;
-
     public Usuario(DatosRegistroUsuario datosRegistroUsuario) {
         this.username = datosRegistroUsuario.username();
         this.password = datosRegistroUsuario.password();
