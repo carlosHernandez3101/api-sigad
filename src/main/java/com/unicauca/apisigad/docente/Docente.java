@@ -24,8 +24,6 @@ public class Docente {
     private String tipoDocente;
     private String correoInstitucional;
     private String ultimoTituloAcademico;
-
-    @Embedded
     @OneToOne(mappedBy = "docente", cascade = CascadeType.ALL)
     private Usuario usuario;
 
@@ -37,8 +35,7 @@ public class Docente {
         this.tipoDocente = datosRegistroDocente.tipoDocente();
         this.correoInstitucional = datosRegistroDocente.correoInstitucional();
         this.ultimoTituloAcademico = datosRegistroDocente.ultimoTituloAcademico();
-        this.usuario = new Usuario(datosRegistroDocente.datosRegistroUsuario());
-
+        this.usuario = new Usuario(datosRegistroDocente.usuario());
     }
 
 }

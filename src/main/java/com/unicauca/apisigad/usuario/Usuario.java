@@ -15,16 +15,16 @@ public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String username;
-    private String password;
-
-    @Embedded
+    private String usuario;
+    private String contrasenia;
     @OneToOne
     @JoinColumn(name = "docente_id")
     private Docente docente;
+    private String rol;
     public Usuario(DatosRegistroUsuario datosRegistroUsuario) {
-        this.username = datosRegistroUsuario.username();
-        this.password = datosRegistroUsuario.password();
+        this.usuario = datosRegistroUsuario.usuario();
+        this.contrasenia = datosRegistroUsuario.contrasenia();
+        this.rol = datosRegistroUsuario.rol();
     }
 
     public void setDocente(Docente docente) {
