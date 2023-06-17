@@ -4,9 +4,11 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Table(name = "labores")
 @Entity(name = "Labor")
+@NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @EqualsAndHashCode(of = "id")

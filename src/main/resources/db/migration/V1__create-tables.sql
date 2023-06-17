@@ -2,11 +2,11 @@ CREATE TABLE docentes (
   id bigint NOT NULL auto_increment,
   nombres varchar(100) NOT NULL,
   apellidos varchar(100) NOT NULL,
-  tipoIdentificacion varchar(20) NOT NULL,
+  tipo_identificacion varchar(20) NOT NULL,
   identificacion varchar(20) NOT NULL,
-  tipoDocente varchar(20) NOT NULL,
-  correoInstitucional varchar(100) NOT NULL,
-  ultimoTituloAcademico varchar(100) NOT NULL,
+  tipo_docente varchar(20) NOT NULL,
+  correo_institucional varchar(100) NOT NULL,
+  ultimo_titulo_academico varchar(100) NOT NULL,
   primary key (id)
 );
 CREATE TABLE usuarios (

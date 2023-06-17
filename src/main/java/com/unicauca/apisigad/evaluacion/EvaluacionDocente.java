@@ -18,4 +18,7 @@ public class EvaluacionDocente {
     private String estado;
     private Integer puntaje;
     private String resultado;
+
+    public EvaluacionDocente(DatosRegistroEvaluacionDocente datosRegistroEvaluacionDocente) {
+    }
 }
