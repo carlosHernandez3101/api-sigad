@@ -3,6 +3,9 @@ package com.unicauca.apisigad.facade;
 import com.unicauca.apisigad.docente.DatosRegistroDocente;
 import com.unicauca.apisigad.docente.Docente;
 import com.unicauca.apisigad.docente.DocenteService;
+import com.unicauca.apisigad.periodo.DatosRegistroPeriodo;
+import com.unicauca.apisigad.periodo.PeriodoAcademico;
+import com.unicauca.apisigad.periodo.PeriodoAcademicoService;
 import com.unicauca.apisigad.usuario.DatosRegistroUsuario;
 import com.unicauca.apisigad.usuario.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,18 +19,31 @@ public class SIGADFacade {
     private DocenteService docenteService;
     @Autowired
     private UsuarioService usuarioService;
+    @Autowired
+    private PeriodoAcademicoService periodoService;
 
-    public void realizarEvaluacion() {}
-    public void registrarDocente(DatosRegistroDocente datosRegistroDocente){
+    public void realizarEvaluacion() {
+    }
+
+    public void registrarDocente(DatosRegistroDocente datosRegistroDocente) {
         System.out.println("sigadFacade registrar");
         docenteService.registrarDocente(datosRegistroDocente);
     }
-    public void asignarUsuario(DatosRegistroUsuario datosRegistroUsuario){
+
+    public void asignarUsuario(DatosRegistroUsuario datosRegistroUsuario) {
         System.out.println("sigadFacade asignar");
         Docente docente = docenteService.obtenerDocenteById(datosRegistroUsuario.docente_id());
         usuarioService.crearUsuario(docente, datosRegistroUsuario);
     }
-    public void crearLaborAcademica(){}
-    public void crearPeriodoAcademico(){}
-    public void notificarDocentes(){}
+
+    public void crearLaborAcademica() {
+    }
+
+    public void crearPeriodoAcademico(DatosRegistroPeriodo datosRegistroPeriodo) {
+        System.out.println("sigadFacade registrar Periodo Academico");
+        periodoService.registrarPerido(datosRegistroPeriodo);
+    }
+
+    public void notificarDocentes() {
+    }
 }
