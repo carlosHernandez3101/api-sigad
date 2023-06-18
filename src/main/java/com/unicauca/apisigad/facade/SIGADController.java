@@ -2,9 +2,13 @@ package com.unicauca.apisigad.facade;
 
 import com.unicauca.apisigad.docente.DatosRegistroDocente;
 import com.unicauca.apisigad.periodo.DatosRegistroPeriodo;
+import com.unicauca.apisigad.periodo.PeriodoAcademico;
 import com.unicauca.apisigad.usuario.DatosRegistroUsuario;
+import com.unicauca.apisigad.usuario.Usuario;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.ui.Model;
 
 @RestController
 @RequestMapping("/sigadGestion")
@@ -25,9 +29,14 @@ public class SIGADController {
     //     sigadGestion.asignarUsuario(datosRegistroUsuario);
     // }
 
-    @PostMapping()
-    public void crearPeriodoAcademico(@RequestBody DatosRegistroPeriodo datosRegistroPeriodo) {
+    @GetMapping({"/periodoss"})
+    public Iterable<PeriodoAcademico> obtenerperiodos(Model model) {
+        return sigadGestion.findAllPeriodos();
+    }
+
+    @PostMapping("/crearPeriodo")
+    public PeriodoAcademico crearPeriodoAcademico(@RequestBody DatosRegistroPeriodo datosRegistroPeriodo) {
         System.out.println("sigadController - Asignar Periodo");
-        sigadGestion.crearPeriodoAcademico(datosRegistroPeriodo);
+        return sigadGestion.crearPeriodoAcademico(datosRegistroPeriodo);
     }
 }

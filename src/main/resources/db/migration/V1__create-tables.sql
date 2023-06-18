@@ -19,17 +19,12 @@ CREATE TABLE usuarios (
     foreign key (docente_id) references docentes(id)
  );
 
-  CREATE TABLE `periodoacademico` (
-  `ID` int(11) NOT NULL,
-  `Nombre` varchar(100) NOT NULL,
-  `Anio` int(11) NOT NULL,
-  `Semestre` int(11) NOT NULL,
-  `FechaInicio` date NOT NULL,
-  `FechaFinal` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
-ALTER TABLE `periodoacademico`
-  ADD PRIMARY KEY (`ID`);
-  
-ALTER TABLE `periodoacademico`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  CREATE TABLE periodoacademico (
+    id int(11) NOT NULL AUTO_INCREMENT,
+    Nombre varchar(100) NOT NULL,
+    Anio int(11) NOT NULL,
+    Semestre int(11) NOT NULL,
+    Fecha_Inicio date NOT NULL,
+    Fecha_Final date NOT NULL,
+    primary key (id)
+);

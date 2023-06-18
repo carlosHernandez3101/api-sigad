@@ -14,5 +14,5 @@ public record DatosRegistroPeriodo(
     @NotBlank
     LocalDate fechaInicio,
     @NotBlank
-    LocalDate fechaFin){
+    LocalDate fechaFinal){
 }

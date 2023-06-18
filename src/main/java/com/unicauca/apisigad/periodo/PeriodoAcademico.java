@@ -23,14 +23,14 @@ public class PeriodoAcademico {
     private Integer anio;
     private Integer semestre;
     private LocalDate fechaInicio;
-    private LocalDate fechaFin;
+    private LocalDate FechaFinal;
 
     public PeriodoAcademico(DatosRegistroPeriodo datosRegistroPeriodo) {
         this.nombre = datosRegistroPeriodo.nombre();
         this.anio = datosRegistroPeriodo.anio();
         this.semestre = datosRegistroPeriodo.semestre();
         this.fechaInicio = datosRegistroPeriodo.fechaInicio();
-        this.fechaFin = datosRegistroPeriodo.fechaFin();
+        this.FechaFinal = datosRegistroPeriodo.fechaFinal();
     }
     
 }

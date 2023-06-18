@@ -5,11 +5,14 @@ import com.unicauca.apisigad.docente.Docente;
 import com.unicauca.apisigad.docente.DocenteService;
 import com.unicauca.apisigad.periodo.DatosRegistroPeriodo;
 import com.unicauca.apisigad.periodo.PeriodoAcademico;
+import com.unicauca.apisigad.periodo.PeriodoAcademicoRepository;
 import com.unicauca.apisigad.periodo.PeriodoAcademicoService;
 import com.unicauca.apisigad.usuario.DatosRegistroUsuario;
+import com.unicauca.apisigad.usuario.UsuarioRepository;
 import com.unicauca.apisigad.usuario.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,6 +24,8 @@ public class SIGADFacade {
     private UsuarioService usuarioService;
     @Autowired
     private PeriodoAcademicoService periodoService;
+    @Autowired
+    private PeriodoAcademicoRepository periodoRepository;
 
     public void realizarEvaluacion() {
     }
@@ -39,9 +44,14 @@ public class SIGADFacade {
     public void crearLaborAcademica() {
     }
 
-    public void crearPeriodoAcademico(DatosRegistroPeriodo datosRegistroPeriodo) {
+    public PeriodoAcademico crearPeriodoAcademico(DatosRegistroPeriodo datosRegistroPeriodo) {
         System.out.println("sigadFacade registrar Periodo Academico");
-        periodoService.registrarPerido(datosRegistroPeriodo);
+        return periodoService.registrarPerido(datosRegistroPeriodo);
+    }
+
+    public Iterable<PeriodoAcademico> findAllPeriodos(){
+        System.out.println("sigadFacade listar Periodo Academico");
+        return periodoRepository.findAll();
     }
 
     public void notificarDocentes() {

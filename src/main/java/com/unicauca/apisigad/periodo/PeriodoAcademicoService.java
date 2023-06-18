@@ -9,9 +9,9 @@ public class PeriodoAcademicoService {
     @Autowired
     private PeriodoAcademicoRepository periodoRepository;
     
-    public void registrarPerido(DatosRegistroPeriodo datosRegistroPeriodo) {
+    public PeriodoAcademico registrarPerido(DatosRegistroPeriodo datosRegistroPeriodo) {
         System.out.println("Service Periodo");
         System.out.println(datosRegistroPeriodo);
-        periodoRepository.save(new PeriodoAcademico(datosRegistroPeriodo));
+        return periodoRepository.save(new PeriodoAcademico(datosRegistroPeriodo));
     }
 }
