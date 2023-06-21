@@ -19,4 +19,9 @@ public class TipoLabor {
     private Long id;
     private String codigo;
     private String descripcion;
+
+    public TipoLabor(DatosRegistroTipoLabor datosRegistroTipoLabor) {
+        this.codigo = datosRegistroTipoLabor.codigo();
+        this.descripcion = datosRegistroTipoLabor.descripcion();
+    }
 }

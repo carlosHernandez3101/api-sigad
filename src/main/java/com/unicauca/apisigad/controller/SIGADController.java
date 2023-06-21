@@ -1,10 +1,10 @@
-package com.unicauca.apisigad.facade;
+package com.unicauca.apisigad.controller;
 
-import com.unicauca.apisigad.docente.DatosRegistroDocente;
+import com.unicauca.apisigad.facade.SIGADFacade;
+import com.unicauca.apisigad.labor.DatosRegistroLaborDocente;
+import com.unicauca.apisigad.labor.DatosRegistroTipoLabor;
 import com.unicauca.apisigad.periodo.DatosRegistroPeriodo;
 import com.unicauca.apisigad.periodo.PeriodoAcademico;
-import com.unicauca.apisigad.usuario.DatosRegistroUsuario;
-import com.unicauca.apisigad.usuario.Usuario;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -29,7 +29,7 @@ public class SIGADController {
     //     sigadGestion.asignarUsuario(datosRegistroUsuario);
     // }
 
-    @GetMapping({"/periodoss"})
+    @GetMapping({"/periodos"})
     public Iterable<PeriodoAcademico> obtenerperiodos(Model model) {
         return sigadGestion.findAllPeriodos();
     }
@@ -38,5 +38,16 @@ public class SIGADController {
     public PeriodoAcademico crearPeriodoAcademico(@RequestBody DatosRegistroPeriodo datosRegistroPeriodo) {
         System.out.println("sigadController - Asignar Periodo");
         return sigadGestion.crearPeriodoAcademico(datosRegistroPeriodo);
+    }
+    @PostMapping("/registrarTipoLabor")
+    public void registrarTipoLabor(@RequestBody DatosRegistroTipoLabor datosRegistroTipoLabor){
+        System.out.println("sigadController - Registrar TipoLabor");
+        sigadGestion.crearTipoLaborAcademica(datosRegistroTipoLabor);
+    }
+
+    @PostMapping("/registrarLaborDocente")
+    public void registrarLaborDocente(@RequestBody DatosRegistroLaborDocente datosRegistroLaborDocente){
+        System.out.println("sigadController - Registrar Labor Docente");
+        sigadGestion.crearLaborDocente(datosRegistroLaborDocente);
     }
 }
