@@ -6,20 +6,15 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <!-- Template Main CSS File -->
     <link href="assets/css/main.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
     <header id="header" class="header d-flex align-items-center" style="height: 150px;">
 
         <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
-
-            <!-- Uncomment the line below if you also wish to use an image logo -->
             <img src="assets/img/logo_unicaucaaa.png" alt="" style="width: 240px; height: auto;">
-            <!--
-            <svg class="imagen-svg" viewBox="0 0 100 100">
-                <image xlink:href="assets/img/svg_unicauca_logo.svg" width="100" height="100" />
-            </svg>
-             -->
 
             <nav id="navbar" class="navbar">
                 <ul>
@@ -51,7 +46,7 @@
         <div class="row">
             <div class="d-flex justify-content-center">
 
-                <h2 class="display-6">Gestión Labor</h2>
+                <h2 class="display-6">Gestión Docentes</h2>
             </div>
             <!--
         <div class="col-sm-6">
@@ -67,9 +62,8 @@
                     <label for="filterBy" class="form-label">Buscar por:</label>
                     <select id="filterBy" class="form-select">
                         <option value="id">ID</option>
-                        <option value="nombre_labor">Nombre Labor</option>
-                        <option value="tipo_labor">Tipo Labor</option>
-                        <option value="horas">Horas</option>
+                        <option value="nombre">Nombre</option>
+                        <option value="apellido">Apellido</option>
                     </select>
                 </div>
             </div>
@@ -88,8 +82,8 @@
             <div class="col-md-6 blue">
                 <div class="position-sticky">
                     <div class="col-sm-6 position-absolute end-0">
-                        <a class="btn btn-outline-success btn-lg d-block" href="/Usuarios/agregar"><strong>Agregar Nueva
-                                Labor</strong></a>
+                        <a class="btn btn-outline-success btn-lg d-block" href="/Usuarios/agregar"><strong>Agregar Nuevo
+                                Usuario</strong></a>
                     </div>
                 </div>
             </div>
@@ -114,45 +108,53 @@
     -->
 
         <div class="row my-4 mx-auto">
-            <table class="table table-sm table-bordered table-striped table-hover align-middle"
+            <table id="docenteTable" class="table table-sm table-bordered table-striped table-hover align-middle"
                 style="font-size: 1rem;">
                 <thead class="text-center align-middle bg-info">
                     <tr>
                         <th class="fs-6">ID</th>
-                        <th class="fs-6">Nombre Labor</th>
-                        <th class="fs-6">Tipo Labor</th>
-                        <th class="fs-6">Código Tipo Labor</th>
-                        <th class="fs-6">Horas</th>
+                        <th class="fs-6">Tipo ID</th>
+                        <th class="fs-6">Nombres</th>
+                        <th class="fs-6">Apellido</th>
+                        <th class="fs-6">Tipo Docente</th>
+                        <th class="fs-6">Estudio</th>
+                        <th class="fs-6">Correo</th>
                         <th class="fs-6"></th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr th:each="labor : ${labores}">
-                        <td th:text="${labor.id}"></td>
-                        <td th:text="${labor.nombreL}"></td>
-                        <td th:text="${labor.tipoL}"></td>
-                        <td th:text="${labor.codigoTipoL}"></td>
-                        <td th:text="${labor.horas}"></td>
-                        <td class="text-center">
-                            <div
-                                class="d-flex justify-content-center flex-sm-column custom-flex-column flex-md-row align-items-center my-2">
-                                <a th:href="@{/libros/editar/{id}(id=${libro.id})}"
-                                    class="btn btn-warning btn-sm fw-bold mx-1">
-                                    <span class="d-none d-md-inline"><i class="bi bi-pencil"></i> Editar</span>
-                                    <span class="d-md-none"><i class="bi bi-pencil"></i></span>
-                                </a>
-                                <a th:href="@{/libros/eliminar/{id}(id=${libro.id})}"
-                                    class="btn btn-danger btn-sm fw-bold mx-1">
-                                    <span class="d-none d-md-inline"><i class="bi bi-trash"></i> Eliminar</span>
-                                    <span class="d-md-none"><i class="bi bi-trash"></i></span>
-                                </a>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
+                <tbody></tbody>
             </table>
         </div>
     </div>
+    <script>
+        $(document).ready(function () {
+            // Hacer una solicitud a la API para obtener los datos de los docentes
+            $.get("http://localhost:8080/sigadGestion/docentes", function (data) {
+                // Obtener la referencia a la tabla
+                var tabla = $("#docenteTable");
+
+                // Limpiar el contenido de la tabla
+                tabla.find("tbody").empty();
+
+                // Iterar sobre los docentes obtenidos de la API y agregarlos a la tabla
+                data.forEach(function (docente) {
+                    var fila = $("<tr></tr>");
+
+                    // Agregar las celdas con los datos del docente
+                    fila.append($("<td></td>").text(docente.identificacion));
+                    fila.append($("<td></td>").text(docente.tipo_identificacion));
+                    fila.append($("<td></td>").text(docente.nombres));
+                    fila.append($("<td></td>").text(docente.apellidos));
+                    fila.append($("<td></td>").text(docente.tipo_docente));
+                    fila.append($("<td></td>").text(docente.ultimo_titulo_academico));
+                    fila.append($("<td></td>").text(docente.correo_institucional));
+
+                    // Agregar la fila a la tabla
+                    tabla.append(fila);
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>

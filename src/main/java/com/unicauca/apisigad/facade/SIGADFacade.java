@@ -2,6 +2,7 @@ package com.unicauca.apisigad.facade;
 
 import com.unicauca.apisigad.docente.DatosRegistroDocente;
 import com.unicauca.apisigad.docente.Docente;
+import com.unicauca.apisigad.docente.DocenteRepository;
 import com.unicauca.apisigad.docente.DocenteService;
 import com.unicauca.apisigad.labor.*;
 import com.unicauca.apisigad.periodo.DatosRegistroPeriodo;
@@ -23,6 +24,8 @@ public class SIGADFacade {
     private PeriodoAcademicoService periodoService;
     @Autowired
     private PeriodoAcademicoRepository periodoRepository;
+    @Autowired
+    private DocenteRepository docenteRepository;
 
     @Autowired
     private TipoLaborService tipoLaborService;
@@ -53,6 +56,11 @@ public class SIGADFacade {
         System.out.println("sigadFacade crear labor docente");
         TipoLabor tipoLabor = tipoLaborService.obtenerTipoLaborById(datosRegistroLaborDocente.tipoLabor_id());
         laborDocenteService.createLaborDocente(tipoLabor, datosRegistroLaborDocente);
+    }
+
+    public Iterable<Docente> findAllDocentes() {
+        System.out.println("sigadFacade listar docentes");
+        return docenteRepository.findAll();
     }
 
     public PeriodoAcademico crearPeriodoAcademico(DatosRegistroPeriodo datosRegistroPeriodo) {

@@ -1,5 +1,6 @@
 package com.unicauca.apisigad.controller;
 
+import com.unicauca.apisigad.docente.Docente;
 import com.unicauca.apisigad.facade.SIGADFacade;
 import com.unicauca.apisigad.labor.DatosRegistroLaborDocente;
 import com.unicauca.apisigad.labor.DatosRegistroTipoLabor;
@@ -28,6 +29,13 @@ public class SIGADController {
     //     System.out.println("sigadController - Asignar Usuario");
     //     sigadGestion.asignarUsuario(datosRegistroUsuario);
     // }
+
+    @GetMapping("/docentes")
+    @ResponseBody
+    public Iterable<Docente> obtenerDocentes() {
+        Iterable<Docente> docentes = sigadGestion.findAllDocentes();
+        return docentes;
+    }
 
     @GetMapping("/periodos")
     @ResponseBody
