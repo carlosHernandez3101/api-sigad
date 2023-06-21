@@ -29,9 +29,11 @@ public class SIGADController {
     //     sigadGestion.asignarUsuario(datosRegistroUsuario);
     // }
 
-    @GetMapping({"/periodos"})
-    public Iterable<PeriodoAcademico> obtenerperiodos(Model model) {
-        return sigadGestion.findAllPeriodos();
+    @GetMapping("/periodos")
+    @ResponseBody
+    public Iterable<PeriodoAcademico> obtenerPeriodos() {
+        Iterable<PeriodoAcademico> periodos = sigadGestion.findAllPeriodos();
+        return periodos;
     }
 
     @PostMapping("/crearPeriodo")
