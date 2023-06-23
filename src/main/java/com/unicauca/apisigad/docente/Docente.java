@@ -26,7 +26,10 @@ public class Docente {
     private String correo_institucional;
     private String ultimo_titulo_academico;
 
+    private Boolean activo;
+
     public Docente(DatosRegistroDocente datosRegistroDocente) {
+        this.activo = true;
         this.nombres = datosRegistroDocente.nombres();
         this.apellidos = datosRegistroDocente.apellidos();
         this.tipo_identificacion = datosRegistroDocente.tipoIdentificacion();
@@ -34,6 +37,20 @@ public class Docente {
         this.tipo_docente = datosRegistroDocente.tipoDocente();
         this.correo_institucional = datosRegistroDocente.correoInstitucional();
         this.ultimo_titulo_academico = datosRegistroDocente.ultimoTituloAcademico();
+    }
+    public void actualizarDocente(DatosActualizarDocente datosActualizarDocente) {
+        if (datosActualizarDocente.nombres() != null){
+            this.nombres = datosActualizarDocente.nombres();
+        }
+        if (datosActualizarDocente.apellidos() != null){
+            this.apellidos = datosActualizarDocente.apellidos();
+        }
+        if (datosActualizarDocente.correoInstitucional() != null){
+            this.correo_institucional = datosActualizarDocente.correoInstitucional();
+        }
+    }
+    public void inactivarDocente(){
+        this.activo = false;
     }
 
 }
