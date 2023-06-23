@@ -33,8 +33,9 @@ public class SIGADController {
     }
     @GetMapping("/listarDocentes")
     @ResponseBody
-    public List<DatosListadoDocente> obtenerDocentes() {
-        return sigadGestion.findAllDocentes();
+    public Iterable<Docente> obtenerDocentes() {
+        Iterable<Docente> docentes = sigadGestion.findAllDocentes();
+        return docentes;
     }
     @GetMapping("/mostrarDatosDocente/{id}")
     public DatosRespuestaDocente mostrarDatosDocente(@PathVariable Long id){

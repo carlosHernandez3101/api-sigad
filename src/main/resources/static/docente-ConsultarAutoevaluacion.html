@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <!-- Template Main CSS File -->
+  <link href="assets/css/main.css" rel="stylesheet">
+</head>
+
+<body>
+  <header id="header" class="header d-flex align-items-center" style="height: 150px;">
+
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+
+      <!-- Uncomment the line below if you also wish to use an image logo -->
+      <img src="assets/img/logo_unicaucaaa.png" alt="" style="width: 240px; height: auto;">
+      <!--
+            <svg class="imagen-svg" viewBox="0 0 100 100">
+                <image xlink:href="assets/img/svg_unicauca_logo.svg" width="100" height="100" />
+            </svg>
+             -->
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a href="docente-RealizarAutoevaluacion.html">Realizar Autoevaluación</a></li>
+          <li><a href="docente-ConsultarAutoevaluacion.html">Consultar Autoevaluación</a></li>
+          <li>
+            <div><a href="login.html">Cerrar Sesión</a></div>
+          </li>
+        </ul>
+      </nav><!-- .navbar -->
+
+      <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+      <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+
+    </div>
+  </header><!-- End Header -->
+
+  <div class="container px-md-5 mx-auto my-5">
+
+    <div class="row">
+      <div class="d-flex justify-content-center ">
+        <h2 class="display-auto col-md-4">Consultar Evaluación</h2>
+      </div>
+      <!--
+        <div class="col-sm-6">
+            <a class="btn btn-outline-success btn-lg d-block" href="/Usuarios/agregar"><strong>Agregar Nuevo Usuario</strong></a>
+        </div>
+        -->
+    </div>
+
+    <div class="row">
+      <div class="col-md-2">
+          <div class="mb-3">
+              <label for="filterBy" class="form-label">Buscar por:</label>
+              <select id="filterBy" class="form-select">
+                  <option value="id">ID</option>
+                  <option value="nombre">Estado</option>
+                  <option value="nombre">Tipo Docente</option>
+                  <option value="apellido">Periodo</option>
+              </select>
+          </div>
+      </div>
+      <div class="col-md-2">
+          <div class="mb-3">
+              <label for="searchTerm" class="form-label">Término de búsqueda:</label>
+              <input type="text" id="searchTerm" class="form-control">
+          </div>
+      </div>
+      <div class="col-md-2 d-flex align-items-end">
+          <div class="mb-3">
+              <button id="searchBtn" class="btn btn-primary mb1 black bg-darken-3">Buscar 🔍</button>
+          </div>
+      </div>
+
+
+        <!--
+            <div class="col-sm-6">
+                <a class="btn btn-outline-success btn-lg d-block" href="/Usuarios/agregar"><strong>Agregar Nuevo Usuario</strong></a>
+            </div>
+            -->
+      </div>
+
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/js/bootstrap.bundle.min.js"></script>
+      <script>
+        document.getElementById('searchBtn').addEventListener('click', function () {
+          var filterBy = document.getElementById('filterBy').value;
+          var searchTerm = document.getElementById('searchTerm').value;
+
+          // Lógica para enviar los filtros al backend con Spring Boot
+          // Aquí debes agregar tu código para procesar los filtros de búsqueda
+
+          console.log('Filtrar por:', filterBy);
+          console.log('Término de búsqueda:', searchTerm);
+        });
+      </script>
+      <!--
+    <div class="row">
+            <a class="btn btn-outline-success btn-lg d-block" href="/Usuarios/agregar"><strong>Agregar Nuevo Usuario</strong></a>
+    </div>
+    -->
+
+    <div class="row my-4 mx-auto">
+      <table class="table table-sm table-bordered table-striped table-hover align-middle" style="font-size: 1rem;">
+        <thead class="text-center align-middle bg-info">
+          <tr>
+            <th class="fs-6">N°</th>
+            <th class="fs-6">Docente</th>
+            <th class="fs-6">Tipo Docente</th>
+            <th class="fs-6">Periodo</th>
+            <th class="fs-6">Evaluación Final</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="labor : ${labores}">
+            <td th:text="${labor.id}"></td>
+            <td th:text="${labor.nombreL}"></td>
+            <td th:text="${labor.estadoL}"></td>
+            <td th:text="${labor.tipoL}"></td>
+            <th>--</th>
+            
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+      <div class="row my-4 mx-auto">
+        <table class="table table-sm table-bordered table-striped table-hover align-middle" style="font-size: 1rem;">
+          <thead class="text-center align-middle bg-info">
+            <tr>
+              <th class="fs-6">ID</th>
+              <th class="fs-6">Estado</th>
+              <th class="fs-6">Nombre Labor</th>
+              <th class="fs-6">Tipo Labor</th>
+              <th class="fs-6">Código Tipo Labor</th>
+              <th class="fs-6">Horas</th>
+              <th class="fs-6">Descripcion</th>
+              <th class="fs-6">Fecha Inicio</th>
+              <th class="fs-6">Fecha Fin</th>
+              <th class="fs-6">Resultados</th>
+              <th class="fs-6">Evaluacion</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="labor : ${labores}">
+              <td th:text="${labor.id}"></td>
+              <td th:text="${labor.nombreL}"></td>
+              <td th:text="${labor.estadoL}"></td>
+              <td th:text="${labor.tipoL}"></td>
+              <td th:text="${labor.codigoTipoL}"></td>
+              <td th:text="${labor.horas}"></td>
+              <td th:text="${labor.nombreL}"></td>
+              <td th:text="${labor.tipoL}"></td>
+              <td th:text="${labor.codigoTipoL}"></td>
+              <th>--</th>
+              <td th:text="${labor.horas}"></td>
+              
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+
+    </div>
+</body>
+
+</html>

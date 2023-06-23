@@ -23,6 +23,8 @@ public class SIGADFacade {
     private PeriodoAcademicoService periodoService;
     @Autowired
     private PeriodoAcademicoRepository periodoRepository;
+    @Autowired
+    private DocenteRepository docenteRepository;
 
     @Autowired
     private TipoLaborService tipoLaborService;
@@ -39,8 +41,9 @@ public class SIGADFacade {
         Docente docente = docenteService.obtenerDocenteById(datosRegistroUsuario.docente_id());
         usuarioService.crearUsuario(docente, datosRegistroUsuario);
     }
-    public List<DatosListadoDocente> findAllDocentes() {
-        return docenteService.obtenerListadoDocentes();
+    public Iterable<Docente> findAllDocentes() {
+        System.out.println("sigadFacade listar docentes");
+        return docenteRepository.findAll();
     }
     public DatosRespuestaDocente mostrarDatosDocente(Long id){
         return docenteService.mostrarDatosDocenteById(id);
